@@ -41,6 +41,13 @@ function trataStatus(res){
 }
 
 function redirecionar(objUser){
+    // gravo localmente as infos do usuário para depois reutilizar nas páginas
+    localStorage.setItem("userHE", JSON.stringify(objUser));
     console.log(objUser);
-
+    if (objUser.gestor == 1){
+        window.location = "gestor.html";
+    }
+    else{
+        window.location = "colaborador.html";
+    }
 }
