@@ -21,8 +21,26 @@ function enviarDados(){
 
 
     fetch("http://localhost:8088/usuarios/login", cabecalho)
-         .then(res => console.log(res));
+         .then(res => trataStatus(res));
+}
 
+function trataStatus(res){
+    // console.log(res);
+    if (res.status == 200){
+        res.json().then(objUser => redirecionar(objUser));
+    }
+    else if (res.status == 404){
+        document.getElementById("msgErro").innerHTML = "Usuário Desconhecido";
+    }
+    else if (res.status == 401){
+        document.getElementById("msgErro").innerHTML = "Senha Inválida";
+    }
+    else{
+        document.getElementById("msgErro").innerHTML = "Erro desconhecido";
+    }
+}
 
+function redirecionar(objUser){
+    console.log(objUser);
 
 }
