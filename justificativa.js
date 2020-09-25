@@ -15,7 +15,7 @@ function preencheAtividades(lista){
     for (i=0;i<lista.length;i++){
         select = select + `<option value=${lista[i].id}>${lista[i].nomeAtividade}</option>`;
     }
-    select = select + `<select>`;
+    select = select + `</select>`;
     document.getElementById("divAtividades").innerHTML = select;
 }
 
@@ -30,8 +30,42 @@ function preencheDadosOcorrencia(){
 
 function preencheCampos(oc){
     ocorrencia = oc;
+    console.log("Recuperei do banco....");
+    console.log(oc);
     document.getElementById("txtData").value = oc.data;
     document.getElementById("txtNumHoras").value = oc.numHoras;
     document.getElementById("txtJustificativa").value = oc.descricao;
     
+}
+
+function gravar(){
+    // primeiro busco as infos do formulario
+    var desc = document.getElementById("txtJustificativa").value;
+    var idAtiv = document.getElementById("selectAtividade").value;
+    
+    var ponto=0;
+    if (document.getElementById("chkPonto").checked){
+        ponto = 1;
+    }
+
+    ocorrencia.descricao = desc;
+    ocorrencia.atividade.id = idAtiv;
+    ocorrencia.pontoManual = ponto;
+
+    console.log(ocorrencia);
+    var cabecalho = {
+        method : "PUT",
+        body   : JSON.stringify(ocorrencia),
+        headers : {
+            "Content-type":"application/json"
+        }
+    }
+
+    fetch("http://localhost:8088/ocorrencias/atualizar",cabecalho)
+       .then(res => tratarResultado(res));
+}
+
+function tratarResultado(res){
+    alert("Sucesso!");
+    window.location = "colaborador.html";
 }
