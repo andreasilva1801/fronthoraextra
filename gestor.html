@@ -22,6 +22,35 @@
                 <div id="infoUsuario">***INFOS***</div>
             </div> 
         </div>
+
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 col-xl-8">
+               <select  id="selectFiltro" class="form-control">
+                    <option value="-1">Todas</option>
+                    <option value="0">Não Justificadas </option>
+                    <option value="1">Justificadas</option>
+                </select>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
+                <button type="button" class="btn btn-primary" onclick="gerarRelatorio()">Aplicar</button>
+            </div> 
+        </div>
+
+        <div class="row">
+            <div class="col-1">RACF</div>
+            <div class="col-2">Colaborador</div>
+            <div class="col-1">Data</div>
+            <div class="col-1">Horas</div>
+            <div class="col-2">Atividade</div>
+            <div class="col-3">Justificativa</div>
+            <div class="col-1">Ponto Manual</div>
+            <div class="col-1">Status</div>
+        </div>
+        <div id="relatorio">
+            <!-- aqui virão vaaaaaaaaarias linhas, cada uma com a sua
+            respectiva ocorrência-->
+
+        </div>
     </div>
 
 
